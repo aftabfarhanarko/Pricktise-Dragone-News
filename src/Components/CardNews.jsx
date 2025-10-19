@@ -2,6 +2,7 @@ import { CiShare2 } from "react-icons/ci";
 import { CiBookmark } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
+import { Link } from "react-router";
 
 const CardNews = ({card}) => {
      const formentDate = new Date(card.author.published_date).toLocaleDateString();
@@ -36,8 +37,8 @@ const CardNews = ({card}) => {
             ? card.details
             : `${card.details.slice(0, 200)}... `}
         
-            <span className="font-medium text-orange-600 hover:underline cursor-pointer"
-            >Read More</span>
+            <Link to={`/new_detlise/${card.id}`} className="font-medium text-orange-600 hover:underline cursor-pointer"
+            >Read More</Link>
         
         </p>
 

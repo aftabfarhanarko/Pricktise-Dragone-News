@@ -18,14 +18,14 @@ const Homelayouts = () => {
           <Navbar></Navbar>
         </nav>
       </header>
-      <main className="grid grid-cols-12  mt-5 gap-15">
-        <aside className="col-span-3 ">
+      <main className="grid grid-cols-12 gap-15  ">
+        <aside className="col-span-2 sticky top-0 h-fit ">
           <LeftSideBar></LeftSideBar>
         </aside>
-        <section  className="col-span-6 ">
+        <section  className="col-span-8 ">
           <Outlet></Outlet>
         </section>
-        <aside  className="col-span-3 ">
+        <aside  className="col-span-2 sticky top-0 h-fit  ">
           <RightSideBar></RightSideBar>
         </aside>
       </main>

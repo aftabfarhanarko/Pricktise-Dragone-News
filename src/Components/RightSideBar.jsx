@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { FaGithub } from "react-icons/fa";
 import facbok from "../assets/fb.png";
 import insta from "../assets/instagram.png";
@@ -9,8 +9,8 @@ import play from "../assets/playground.png";
 import bg from "../assets/bg.png";
 
 const RightSideBar = () => {
-    return (
-          <div>
+  return (
+    <div>
       <div>
         <h1 className="font-semibold">Login With</h1>
 
@@ -45,7 +45,6 @@ const RightSideBar = () => {
             </svg>
             Login with Google
           </button>
-        
 
           <button className="btn mt-4  text-black border-gray-400">
             <FaGithub /> Login with GitHub
@@ -77,14 +76,13 @@ const RightSideBar = () => {
       </div>
 
       <div className="bg-base-300 p-3 py-5 mt-6 rounded-lg">
-        
         <img src={swming}></img>
         <img src={clas}></img>
         <img src={play}></img>
         <img src={bg}></img>
       </div>
     </div>
-    );
+  );
 };
 
 export default RightSideBar;
