@@ -3,6 +3,9 @@ import Homelayouts from "../Layout/Homelayouts";
 import Home from "../Page/Home";
 import CatagorysNews from "../Page/CatagorysNews";
 import NewsDetlise from "../Page/NewsDetlise";
+import FormetLayout from "../Layout/FormetLayout";
+import LogingPag from "../Components/SignpuLayout/LogingPag";
+import Register from "../Components/SignpuLayout/Register";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +27,20 @@ export const router = createBrowserRouter([
     path:"/new_detlise/:id",
     element: <NewsDetlise></NewsDetlise>,
      loader: () => fetch("/news.json")
+  },
+  {
+    path:"/formet",
+    element: <FormetLayout></FormetLayout>,
+    children:[
+        {
+          path:"login",
+          element:<LogingPag></LogingPag>
+        },
+        {
+          path:"register",
+          element:<Register></Register>
+        }
+    ]
   },
   {
     path: "/*",
