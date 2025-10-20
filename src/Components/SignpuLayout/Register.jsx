@@ -1,15 +1,52 @@
-import React, { useState } from 'react';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link } from 'react-router';
+import React, { useContext, useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Link } from "react-router";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Register = () => {
-     const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
+  const { creatUserFun, upDeatProfiles, emailveriFy } = useContext(AuthContext);
+  console.log(creatUserFun);
 
-     const handelRegister =() => {
+  const handelRegister = (e) => {
+    e.preventDefault();
+    const email = e.target.email?.value;
+    const password = e.target.password?.value;
+    const displayName = e.target.name?.value;
+    const photoURL = e.target.photo?.value;
 
-     }
-    return (
-        <div className="flex justify-center items-center min-h-screen">
+    const profile = {
+      displayName,
+      photoURL,
+    };
+
+    console.log({ email, password, name });
+    creatUserFun(email, password)
+      .then((result) => {
+        console.log(result.user);
+
+        upDeatProfiles(profile)
+          .then((resd) => {
+            console.log(resd.user);
+            
+            emailveriFy()
+              .then((my) => {
+                console.log(my);
+              })
+              .catch((err) => {
+                console.log(err.message);
+              });
+          })
+          .catch((ro) => {
+            console.log(ro.message);
+          });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+  return (
+    <div className="flex justify-center items-center min-h-screen">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
         <div className="card-body">
           <h1 className="text-lg font-semibold mb-5 text-center">
@@ -35,7 +72,6 @@ const Register = () => {
                 name="photo"
                 className="input focus:outline-none"
                 placeholder="photo url"
-                required
               />
 
               {/* Email */}
@@ -76,7 +112,10 @@ const Register = () => {
               </button>
               <p className="font-semibold text-center mt-2">
                 Dont’t Have An Account ?{" "}
-                <Link className="text-red-500 hover:underline" to="/formet/login">
+                <Link
+                  className="text-red-500 hover:underline"
+                  to="/formet/login"
+                >
                   Login
                 </Link>
               </p>
@@ -85,7 +124,7 @@ const Register = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Register;

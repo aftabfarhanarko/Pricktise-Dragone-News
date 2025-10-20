@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link } from 'react-router';
+import React, { useContext, useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Link } from "react-router";
+import { AuthContext } from "../../context/AuthProvider";
 
 const LogingPag = () => {
-    const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
+  const {signUserFun} = useContext(AuthContext);
 
+  const handelLogin = (e) => {
+      e.preventDefault();
+    const email = e.target.email?.value;
+    const password = e.target.password?.value;
+     
+    signUserFun(email, password)
+    .then(result => {
+      console.log(result.user)
+    }).catch(err => {
+      console.log(err.message)
+    })
 
-    const handelLogin =() => {
-
-    }
-    return (
- <div className="flex justify-center items-center min-h-screen">
+  };
+  return (
+    <div className="flex justify-center items-center min-h-screen">
       <div className="card bg-base-100 w-full max-w-sm shadow-2xl">
         <div className="card-body">
           <h1 className="text-lg font-semibold mb-5 text-center">
@@ -47,8 +58,6 @@ const LogingPag = () => {
                 </div>
               </div>
 
-             
-
               {/* Forgot password */}
               <div>
                 <Link to="/reset" className="link link-hover">
@@ -79,7 +88,7 @@ const LogingPag = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default LogingPag;

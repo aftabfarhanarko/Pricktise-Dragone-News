@@ -21,7 +21,7 @@ const NewsDetlise = () => {
     }, [data,id])
     return (
            <div>
-      <header className="my-4 w-10/12 mx-auto ">
+      <header className="my-4 w-10/12 mx-auto  ">
         <Header></Header>
         <nav className="my-6">
           <Navbar></Navbar>

@@ -1,6 +1,4 @@
-
 import { getAuth } from "firebase/auth";
-
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -9,12 +7,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAV7YORGf5GoSqzzlUq8qF6fDsDbuRZ-jw",
-  authDomain: "test-project-95ea9.firebaseapp.com",
-  projectId: "test-project-95ea9",
-  storageBucket: "test-project-95ea9.firebasestorage.app",
-  messagingSenderId: "393703631979",
-  appId: "1:393703631979:web:d814d28bba23024f53552e"
+  apiKey: "AIzaSyCWjAthDe2RCsyHgfHcNiJo4o16PRQhxlQ",
+  authDomain: "ew-fiegter-project.firebaseapp.com",
+  projectId: "ew-fiegter-project",
+  storageBucket: "ew-fiegter-project.firebasestorage.app",
+  messagingSenderId: "794798799159",
+  appId: "1:794798799159:web:09768c2b6e0531cf2142b2",
 };
 
 // Initialize Firebase
