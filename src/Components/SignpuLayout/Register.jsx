@@ -5,7 +5,8 @@ import { AuthContext } from "../../context/AuthProvider";
 
 const Register = () => {
   const [show, setShow] = useState(false);
-  const { creatUserFun, upDeatProfiles, emailveriFy } = useContext(AuthContext);
+  const { creatUserFun, upDeatProfiles, enailVeryfyFun } =
+    useContext(AuthContext);
   console.log(creatUserFun);
 
   const handelRegister = (e) => {
@@ -28,8 +29,8 @@ const Register = () => {
         upDeatProfiles(profile)
           .then((resd) => {
             console.log(resd.user);
-            
-            emailveriFy()
+
+            enailVeryfyFun()
               .then((my) => {
                 console.log(my);
               })

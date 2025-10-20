@@ -3,6 +3,7 @@ import React, { createContext } from "react";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
@@ -23,9 +24,13 @@ const AuthProvider = ({ children }) => {
   };
   const upDeatProfiles = (profile) => {
     return updateProfile(auth.currentUser, profile);
-  }
-  const emailveriFy = () => {
+  };
+  const enailVeryfyFun = () => {
     return sendEmailVerification(auth.currentUser);
+  };
+
+  const passwordReset = (email) => {
+    return sendPasswordResetEmail(auth, email);
   }
 
   // Context data
@@ -33,14 +38,12 @@ const AuthProvider = ({ children }) => {
     creatUserFun,
     signUserFun,
     upDeatProfiles,
-    emailveriFy,
-    name: "Farhen",
+    enailVeryfyFun,
+    passwordReset
   };
 
   return (
-    <AuthContext.Provider value={userinfoData}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={userinfoData}>{children}</AuthContext.Provider>
   );
 };
 

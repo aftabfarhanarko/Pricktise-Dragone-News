@@ -1,11 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router";
 import { AuthContext } from "../../context/AuthProvider";
 
 const LogingPag = () => {
   const [show, setShow] = useState(false);
-  const {signUserFun} = useContext(AuthContext);
+  const {signUserFun,passwordReset} = useContext(AuthContext);
+  const refreance = useRef(null);
 
   const handelLogin = (e) => {
       e.preventDefault();
@@ -20,6 +21,16 @@ const LogingPag = () => {
     })
 
   };
+  const handelPpasswordReset = () => {
+    const email = refreance.current.value;
+
+    console.log(email);
+     passwordReset(email)
+     .then(result => {
+      console.log(result);
+      alert("Send COde Form Your Email")
+     })
+  }
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="card bg-base-100 w-full max-w-sm shadow-2xl">
@@ -33,6 +44,7 @@ const LogingPag = () => {
               {/* Email */}
               <label className="label font-semibold">Email address</label>
               <input
+              ref={refreance}
                 name="email"
                 type="email"
                 className="input"
@@ -60,9 +72,9 @@ const LogingPag = () => {
 
               {/* Forgot password */}
               <div>
-                <Link to="/reset" className="link link-hover">
+                <button type="button" onClick={handelPpasswordReset}  className="link link-hover">
                   Forgot password?
-                </Link>
+                </button>
               </div>
 
               {/* Error */}

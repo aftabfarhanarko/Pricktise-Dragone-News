@@ -6,7 +6,6 @@ import NewsDetlise from "../Page/NewsDetlise";
 import FormetLayout from "../Layout/FormetLayout";
 import LogingPag from "../Components/SignpuLayout/LogingPag";
 import Register from "../Components/SignpuLayout/Register";
-import PriverRouter from "../provider/PriverRouter";
 
 export const router = createBrowserRouter([
   {
