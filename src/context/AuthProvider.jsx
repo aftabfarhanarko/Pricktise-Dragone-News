@@ -1,47 +1,72 @@
 // src/context/AuthContext.jsx
-import React, { createContext } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  signOut,
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 
-// Context তৈরি করো
+
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-  // নতুন ইউজার তৈরি
+  const [user, setUser] = useState(null);
+  const [loding, setLoding] = useState(true);
+
   const creatUserFun = (email, password) => {
+    setLoding(true)
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  // লগইন ইউজার
+
   const signUserFun = (email, password) => {
+    setLoding(true)
     return signInWithEmailAndPassword(auth, email, password);
   };
   const upDeatProfiles = (profile) => {
+    setLoding(true)
     return updateProfile(auth.currentUser, profile);
   };
   const enailVeryfyFun = () => {
+    setLoding(true)
     return sendEmailVerification(auth.currentUser);
   };
 
   const passwordReset = (email) => {
+    setLoding(true)
     return sendPasswordResetEmail(auth, email);
   }
 
-  // Context data
+  const signOutUser = () => {
+    return signOut(auth);
+  }
+
   const userinfoData = {
     creatUserFun,
     signUserFun,
     upDeatProfiles,
     enailVeryfyFun,
-    passwordReset
+    passwordReset,
+    user,
+    loding,
+    signOutUser
   };
 
+  useEffect(() => {
+    const unsubcripet = onAuthStateChanged(auth , (currentUser) => {
+    setUser(currentUser);
+    setLoding(false)
+    })
+
+    return () => {
+      unsubcripet();
+    }
+  },[])
   return (
     <AuthContext.Provider value={userinfoData}>{children}</AuthContext.Provider>
   );

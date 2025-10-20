@@ -1,12 +1,14 @@
 import React, { useContext, useRef, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthProvider";
 
 const LogingPag = () => {
   const [show, setShow] = useState(false);
   const {signUserFun,passwordReset} = useContext(AuthContext);
   const refreance = useRef(null);
+ const navigate = useNavigate();
+ const locations = useLocation();
 
   const handelLogin = (e) => {
       e.preventDefault();
@@ -15,6 +17,7 @@ const LogingPag = () => {
      
     signUserFun(email, password)
     .then(result => {
+        navigate(`${locations.state ? locations.state : "/"}`);
       console.log(result.user)
     }).catch(err => {
       console.log(err.message)
@@ -28,6 +31,7 @@ const LogingPag = () => {
      passwordReset(email)
      .then(result => {
       console.log(result);
+     
       alert("Send COde Form Your Email")
      })
   }
