@@ -4,7 +4,7 @@ import usesar from "../assets/user.png";
 import { AuthContext } from "../context/AuthProvider";
 
 const Navbar = () => {
-  const { user, signOutUser } = useContext(AuthContext);
+  const { user, signOutUser, loding } = useContext(AuthContext);
   const handelSignOut = () => {
     signOutUser();
   };
@@ -19,12 +19,17 @@ const Navbar = () => {
       </div>
       <div className="flex  gap-4 items-center">
         {user ? (
-          <img className="w-10 h-10 border-red-600 rounded-full p-1" src={user.photoURL}></img>
+          <img
+            className="w-10 h-10 border-red-600 rounded-full p-1"
+            src={user.photoURL}
+          ></img>
         ) : (
           <img className="w-7 h-7" src={usesar}></img>
         )}
 
-        {user ? (
+        {loding ? (
+          <span className="loading loading-spinner text-accent"></span>
+        ) : user ? (
           <Link
             onClick={handelSignOut}
             to="/formet/login"
